@@ -5,5 +5,8 @@ class Member(models.Model):
     last_name = models.CharField(max_length=255)
     phone = models.CharField(max_length=15, blank=True, null=True)
     joined_date = models.DateField(null=True)
+    
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
 
 # Create your models here.

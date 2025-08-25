@@ -1,0 +1,97 @@
+{% extends "master.html" %}
+{% block title %}
+  Join My Tennis Club - Registration
+{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-6">
+    <div class="card shadow-lg border-0">
+      <div class="card-header bg-success text-white text-center">
+        <h2 class="mb-0"><i class="bi bi-tennis"></i> Join My Tennis Club!</h2>
+      </div>
+      <div class="card-body p-4">
+        <p class="text-center text-muted mb-4">Welcome! Please fill out the form below to become a member of our tennis club.</p>
+
+        <form method="post">
+          {% csrf_token %}
+          
+          <div class="mb-3">
+            <label for="{{ form.first_name.id_for_label }}" class="form-label">
+              <i class="bi bi-person"></i> {{ form.first_name.label }} *
+            </label>
+            <input type="text" class="form-control" id="{{ form.first_name.id_for_label }}" 
+                   name="{{ form.first_name.name }}" 
+                   placeholder="Enter your first name" 
+                   value="{{ form.first_name.value|default:'' }}" required>
+            {% if form.first_name.errors %}
+              <div class="text-danger small mt-1">
+                {{ form.first_name.errors }}
+              </div>
+            {% endif %}
+          </div>
+          
+          <div class="mb-3">
+            <label for="{{ form.last_name.id_for_label }}" class="form-label">
+              <i class="bi bi-person"></i> {{ form.last_name.label }} *
+            </label>
+            <input type="text" class="form-control" id="{{ form.last_name.id_for_label }}" 
+                   name="{{ form.last_name.name }}" 
+                   placeholder="Enter your last name" 
+                   value="{{ form.last_name.value|default:'' }}" required>
+            {% if form.last_name.errors %}
+              <div class="text-danger small mt-1">
+                {{ form.last_name.errors }}
+              </div>
+            {% endif %}
+          </div>
+          
+          <div class="mb-3">
+            <label for="{{ form.phone.id_for_label }}" class="form-label">
+              <i class="bi bi-telephone"></i> {{ form.phone.label }} <small class="text-muted">(Optional)</small>
+            </label>
+            <input type="tel" class="form-control" id="{{ form.phone.id_for_label }}" 
+                   name="{{ form.phone.name }}" 
+                   placeholder="Enter your phone number" 
+                   value="{{ form.phone.value|default:'' }}">
+            {% if form.phone.errors %}
+              <div class="text-danger small mt-1">
+                {{ form.phone.errors }}
+              </div>
+            {% endif %}
+          </div>
+          
+          <div class="mb-4">
+            <label for="{{ form.joined_date.id_for_label }}" class="form-label">
+              <i class="bi bi-calendar-plus"></i> {{ form.joined_date.label }}
+            </label>
+            <input type="date" class="form-control" id="{{ form.joined_date.id_for_label }}" 
+                   name="{{ form.joined_date.name }}" 
+                   value="{{ form.joined_date.value|default:'' }}">
+            {% if form.joined_date.errors %}
+              <div class="text-danger small mt-1">
+                {{ form.joined_date.errors }}
+              </div>
+            {% endif %}
+          </div>
+          
+          <div class="d-grid">
+            <button type="submit" class="btn btn-success btn-lg">
+              <i class="bi bi-tennis"></i> Join Tennis Club
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="text-center mt-4">
+      <a href="/" class="btn btn-outline-secondary me-2">
+        <i class="bi bi-house"></i> Back to Home
+      </a>
+      <a href="/members/" class="btn btn-outline-primary">
+        <i class="bi bi-people"></i> View Current Members
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}
